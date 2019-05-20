@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" *ngIf="currentBlog">
+      <h1>
+        {{currentBlog.title | uppercase}}
+      </h1>
+
+      <p>
+        {{currentBlog.title}} is posted by {{currentBlog.author}} on
+        {{currentBlog.created | date}}
+      </p>
+      <p *ngIf="currentBlog.tags.length>0">tags: <span *ngFor="let tag of currentBlog.tags;let first = first;let last = last">{{tag}}
+          {{last ? '':' ,'}}</span>
+      </p>
+      <hr>
+      <p [innerHtml]="currentBlog.bodyHtml"></p>
+      <hr>
+    </div>
+  </div>
+  <div class="row" *ngIf="currentBlog">
+    
+    <div class="col-md-4">
+      <a class="btn btn-primary" [routerLink]="['/edit',currentBlog,blogId]">
+        Edit
+      </a>
+    </div>
+      
+    <div class="col-md-4">
+        <a class="btn btn-danger" [click] ="deleteThisBlog()">
+          Delete
+        </a>
+      </div>
+
+      <div class="col-md-4">
+          <a class="btn btn-warning" [routerLink]="['']">
+            Go Back
+          </a>
+        </div>
+
+
+      
+    </div>
+
+
+</div>
